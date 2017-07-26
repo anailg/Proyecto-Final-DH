@@ -4,16 +4,11 @@
     
 		var linkPaleta = document.getElementById("paleta");	
 
-		console.log(linkPaleta);
-
 	    evento.preventDefault();
 	
 		var paletaActual=checkPaleta(linkPaleta);
-		console.log(paletaActual);
 		linkPaleta.className = paletaActual;
 		linkPaleta.href="css/"+paletaActual+".css";
-		console.log(linkPaleta);
-
 		addEventCambiarPaleta();
 	    
 	})
@@ -27,10 +22,7 @@
 		    evento.preventDefault();
 
 		    var elemento = document.getElementById("paleta");
-			console.log(elemento)
-
 			var paletaActual=checkPaleta(elemento)
-			console.log(paletaActual)
 		    
 		    if (paletaActual == "paleta1") {
 		      	elemento.className = "paleta2";
@@ -49,13 +41,12 @@
 	function checkPaleta(elemento) {
     	
         var paleta = getCookie("paleta");
-        console.log('Cookie value:'+paleta)
+
         if (paleta == "") {
-        	console.log('elemento: '+elemento.className)
             paleta = elemento.className;           //"paleta1" ; 
             setCookie("paleta", paleta, 1);
         }
-        console.log('Return:'+paleta)
+        
         return paleta;
     }
 

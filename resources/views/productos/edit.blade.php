@@ -28,23 +28,23 @@
                     <div class="form-group">
                         <label for="especificaciones">Especificaciones</label>
                         <input type="text" name="especificaciones" id="especificaciones" class="form-control" value="{{($producto->especificaciones)}}">
-                    </div>
+                    </div>                    
                     <div class="form-group">
-                        <label for="activo">Activo</label>
-
-                        
-                            @if ($producto->activo) 
-                                    <input type="checkbox" name="activo" id="activo" class="form-control" checked >
-                                
-                            @else 
-                                    <input type="checkbox" name="activo" id="activo" class="form-control" >
-                            @endif 
-                        
+                        <label for="precio">Precio</label>
+                        <input type="number" name="precio" id="precio" class="form-control" value={{($producto->precio)}}>
                     </div>
                     <div class="form-group">
                         <label for="imagen">Imágen</label>
                         <input type="file" name="imagen" id="imagen" class="form-control"
                         value="{{($producto->imagen)}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="activo">Activo</label>                        
+                            @if ($producto->activo) 
+                                    <input type="checkbox" name="activo" id="activo" class="check-box" checked >                                
+                            @else 
+                                    <input type="checkbox" name="activo" id="activo" class="check-box" >
+                            @endif                         
                     </div>
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" name="enviador" value="Enviar">

@@ -19,7 +19,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Producto::paginate(2);        
+        $productos = Producto::paginate(5);        
         
         return view('productos.index', compact('productos'));
     }
@@ -47,11 +47,11 @@ class ProductosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-       
+    {       
         $this->validate($request, [
             'nombre' => 'required|unique:productos|max:50',
             'descripcion' => 'max:500',
+            'precio' => 'required|numeric'
             ]);
 
        //crear el producto
@@ -103,17 +103,19 @@ class ProductosController extends Controller
         $this->validate($request, [
             'nombre' => 'required|max:50',
             'descripcion' => 'max:500',
+            'precio' => 'required|numeric'
             ]);
+        
+        $producto = Producto::find($id); 
 
-        $producto = Producto::find($id);
+        $producto->nombre = request()->nombre;
+        $producto->descripcion = request()->descripcion;
+        $producto->especificaciones = request()->especificaciones;
+        (request()->activo=='on')? $producto->activo=1 : $producto->activo=0 ;
+        $producto->precio = request()->precio;
 
-        $producto = request()->nombre;
-        $producto = request()->descripcion;
-        $producto = request()->especificaciones;
-        $producto = request()->activo;
-
-        if (!($producto->imagen == request()->imagen)) {
-            
+        if ($request->hasFile('imagen') && !($producto->imagen == request()->imagen) ) {    
+        
             //cambiar la imagen
             $nombre = str_slug($producto->nombre) . '.' .request()->imagen->extension();
             request()->imagen->storeAs('/public/productos', $nombre);
@@ -122,7 +124,7 @@ class ProductosController extends Controller
             $producto->imagen = $nombre;
 
         }
-        
+    
         $producto->save();
         return redirect ('productos/'.$producto->id);
     }
@@ -133,8 +135,10 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
-        //
+        Producto::destroy($id);
+        return redirect ('/admin/productos/index');
     }
 }
