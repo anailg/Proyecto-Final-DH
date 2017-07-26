@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 class ProductosController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,8 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::paginate(2);        
+        
         return view('productos.index', compact('productos'));
     }
 
@@ -34,8 +36,8 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
         return view('productos.create');
+
     }
 
     /**
@@ -46,16 +48,23 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
+       
+        $this->validate($request, [
+            'nombre' => 'required|unique:productos|max:50',
+            'descripcion' => 'max:500',
+            ]);
+
        //crear el producto
     	$producto = Producto::create(request()->all());
 
     	//guardar la imagen
     	$nombre = str_slug($producto->nombre) . '.' .request()->imagen->extension();
-    	request()->imagen->storeAs('productos', $nombre);
+    	request()->imagen->storeAs('/public/productos', $nombre);
 
     	//asociar la imagen con el producto
     	$producto->imagen = $nombre;
     	$producto->save();
+        return redirect ('productos/'.$producto->id);
     }
 
     /**
@@ -78,7 +87,8 @@ class ProductosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::find($id);
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -90,7 +100,31 @@ class ProductosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|max:50',
+            'descripcion' => 'max:500',
+            ]);
+
+        $producto = Producto::find($id);
+
+        $producto = request()->nombre;
+        $producto = request()->descripcion;
+        $producto = request()->especificaciones;
+        $producto = request()->activo;
+
+        if (!($producto->imagen == request()->imagen)) {
+            
+            //cambiar la imagen
+            $nombre = str_slug($producto->nombre) . '.' .request()->imagen->extension();
+            request()->imagen->storeAs('/public/productos', $nombre);
+      
+            //asociar la imagen con el producto
+            $producto->imagen = $nombre;
+
+        }
+        
+        $producto->save();
+        return redirect ('productos/'.$producto->id);
     }
 
     /**

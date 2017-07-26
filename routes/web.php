@@ -23,13 +23,19 @@ Route::get('cantUsuarios', 'UsersController@cantUsuarios');
 
 Auth::routes();
 
-Route::get('productos/', 'ProductosController@index');
-Route::get('productos/{id}', 'ProductosController@show');
+// Route::get('productos/', 'ProductosController@index');
+// Route::get('productos/{id}', 'ProductosController@show');
 
 
-Route::get('admin/productos/', 'Admin/ProductosController@index');
-Route::get('admin/productos/create', 'Admin/ProductosController@create');
-Route::post('admin/productos/create', 'Admin/ProductosController@save');
-Route::get('admin/productos/{id}', 'ProductosController@show');
+Route::get('/admin/productos/index', 'Admin\ProductosController@index');
+Route::get('/admin/productos/menu', 'Admin\ProductosController@menu');
+Route::get('/admin/productos/create', 'Admin\ProductosController@create');
+Route::post('/admin/productos/create', 'Admin\ProductosController@store');
+Route::get('/admin/productos/edit/{id}', 'Admin\ProductosController@edit');
+Route::post('/admin/productos/edit/{id}', 'Admin\ProductosController@update');
+Route::get('/admin/productos/destroy/{id}', 'Admin\ProductosController@destroy');
+Route::get('/admin/productos/{id}', 'Admin\ProductosController@show');
+Route::get('/productos/{id}', 'Admin\ProductosController@show');
+
 
 

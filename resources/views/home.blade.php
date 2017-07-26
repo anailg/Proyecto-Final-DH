@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-<div class="container">
+<div class="container-home">
 
 	<div  class='usuarios'>			
 		<a id='msgCantClientes'>Ya somos {{$cantUsuarios}} usuarios</a> 
