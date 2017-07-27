@@ -7,8 +7,8 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Descripción</th>
-				<th>Activo</th>
-				<th colspan="3">Acciones</th>
+				<th>Precio</th>
+				<th>Detalle</th>				
 			</tr>
 		</thead>
 
@@ -17,10 +17,8 @@
 				<tr>
 					<td>{{ $producto->nombre }}</td>
 					<td>{{ $producto->descripcion }}</td>
-					<td>{{ $producto->activo }}</td>
-					<td><a href={{"/admin/productos/". $producto->id}}>Ver</a></td>
-					<td><a href={{"/admin/productos/edit/".$producto->id}}>Editar</a></td>
-					<td><a href={{"/admin/productos/destroy/".$producto->id}} id='deleteProd'>Eliminar</a></td>
+					<td>{{ $producto->precio }}</td>
+					<td><a href={{"/productos/". $producto->id}}>Ver</a></td>
 				</tr>
 			@endforeach
 		</tbody>
@@ -29,6 +27,3 @@
 
 @endsection
 
-@section('scripts')
-	<script src="js/confirmDelete.js"></script>
-@endsection

@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-	<h1>Productos</h1>
+	<h1>Categorias</h1>
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Nombre</th>
 				<th>Descripción</th>
-				<th>Activo</th>
 				<th colspan="3">Acciones</th>
 			</tr>
 		</thead>
@@ -17,10 +16,9 @@
 				<tr>
 					<td>{{ $producto->nombre }}</td>
 					<td>{{ $producto->descripcion }}</td>
-					<td>{{ $producto->activo }}</td>
-					<td><a href={{"/admin/productos/". $producto->id}}>Ver</a></td>
-					<td><a href={{"/admin/productos/edit/".$producto->id}}>Editar</a></td>
-					<td><a href={{"/admin/productos/destroy/".$producto->id}} id='deleteProd'>Eliminar</a></td>
+					<td><a href={{"/admin/categorias/". $producto->id}}>Ver</a></td>
+					<td><a href={{"/admin/categorias/edit/".$producto->id}}>Editar</a></td>
+					<td><a href={{"/admin/categorias/destroy/".$producto->id}} id='deleteCateg'>Eliminar</a></td>
 				</tr>
 			@endforeach
 		</tbody>

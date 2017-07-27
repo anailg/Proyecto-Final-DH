@@ -6,7 +6,7 @@
 
 <body>
 
-	@include("layouts.header")
+	@include("layouts.headerAdmin")
 			
 	@yield('content')
 		

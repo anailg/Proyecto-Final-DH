@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class ProductosController extends Controller
 
 {
+    protected $redirectTo = '/home'; // Lo usa 'auth' si no esta logueado
+    
+    public function __construct()
+    {
+        // $this->middleware('auth'); // solo accesible si estas loqueado
+        $this->middleware('admin');  // solo si es admin, sino redirige
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +57,7 @@ class ProductosController extends Controller
     {       
         $this->validate($request, [
             'nombre' => 'required|unique:productos|max:50',
-            'descripcion' => 'max:500',
+            'descripcion' => 'required|max:500',
             'precio' => 'required|numeric'
             ]);
 
@@ -64,7 +71,7 @@ class ProductosController extends Controller
     	//asociar la imagen con el producto
     	$producto->imagen = $nombre;
     	$producto->save();
-        return redirect ('productos/'.$producto->id);
+        return redirect ('/admin/productos/'.$producto->id);
     }
 
     /**
@@ -126,7 +133,8 @@ class ProductosController extends Controller
         }
     
         $producto->save();
-        return redirect ('productos/'.$producto->id);
+        // return redirect ('productos/'.$producto->id);
+        return redirect ('/admin/productos/index');
     }
 
     /**
