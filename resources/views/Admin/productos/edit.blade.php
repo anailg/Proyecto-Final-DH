@@ -1,20 +1,17 @@
-@extends('layouts.master')
+@extends('layouts.masterAdmin')
 
 @section('content')
 
-    @if(count($errors))
-        {{-- <div class="alert alert-danger"> --}}
-        <div class="">
-            @foreach($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
-
+    
 	<div class="container">
-        <div class="row">
+
+        <div class="row">            
+
             <div class="col-md-8 col-md-offset-2">
                 <h1>Editar Producto</h1>
+
+                @include('layouts.errors')
+                
                 <form action="" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -52,6 +49,12 @@
                 </form>
             </div>
         </div>
+
+        
+        
     </div>
+
+    
+
 
 @endsection

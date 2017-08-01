@@ -8,7 +8,7 @@
 	
 		var paletaActual=checkPaleta(linkPaleta);
 		linkPaleta.className = paletaActual;
-		linkPaleta.href="css/"+paletaActual+".css";
+		linkPaleta.href="/css/"+paletaActual+".css";
 		addEventCambiarPaleta();
 	    
 	})
@@ -26,11 +26,11 @@
 		    
 		    if (paletaActual == "paleta1") {
 		      	elemento.className = "paleta2";
-		      	elemento.href="css/paleta2.css"
+		      	elemento.href="/css/paleta2.css"
 		      	setCookie("paleta", "paleta2", 1);	      	
 		    } else {
 		      	elemento.className = "paleta1";
-		      	elemento.href="css/paleta1.css"
+		      	elemento.href="/css/paleta1.css"
 		      	setCookie("paleta", "paleta1", 1);
 			}
 		})

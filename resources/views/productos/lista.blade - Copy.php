@@ -1,13 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-	<h1>Categorias</h1>
+	<h1>Productos</h1>
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Nombre</th>
 				<th>Descripción</th>
-				<th colspan="3">Acciones</th>
+				<th>Precio</th>
+				<th>Detalle</th>				
 			</tr>
 		</thead>
 
@@ -16,9 +17,8 @@
 				<tr>
 					<td>{{ $producto->nombre }}</td>
 					<td>{{ $producto->descripcion }}</td>
-					<td><a href={{"/admin/categorias/". $producto->id}}>Ver</a></td>
-					<td><a href={{"/admin/categorias/edit/".$producto->id}}>Editar</a></td>
-					<td><a href={{"/admin/categorias/destroy/".$producto->id}} id='deleteCateg'>Eliminar</a></td>
+					<td>{{ $producto->precio }}</td>
+					<td><a href={{"/productos/". $producto->id}}>Ver</a></td>
 				</tr>
 			@endforeach
 		</tbody>
@@ -27,6 +27,3 @@
 
 @endsection
 
-@section('scripts')
-	<script src="js/confirmDelete.js"></script>
-@endsection

@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\User;
 use DB;
 
 class HomeController extends Controller
 {
-    
-    // protected $redirectTo = '/home'; 
-
     /**
      * Create a new controller instance.
      *
@@ -21,7 +17,6 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->middleware('home');
     }
 
     /**
@@ -32,6 +27,6 @@ class HomeController extends Controller
     public function index()
     {
         $cantUsuarios = DB::table('users')->count();
-        return view('home',compact('cantUsuarios'));
+        return view('admin/home',compact('cantUsuarios'));
     }
 }

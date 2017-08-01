@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Producto;
+use App\Categoria;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class ProductosController extends Controller
     public function __construct()
     {
         // $this->middleware('auth'); // solo accesible si estas loqueado
-        $this->middleware('admin');  // solo si es admin, sino redirige
+        // $this->middleware('admin');  // solo si es admin, sino redirige
     }
     /**
      * Display a listing of the resource.
@@ -26,14 +27,14 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Producto::paginate(5);        
+        $productos = Producto::orderBy('nombre')->paginate(3);        
         
-        return view('productos.index', compact('productos'));
+        return view('admin.productos.index', compact('productos'));
     }
 
      public function menu()
     {
-       return view('productos.menu');
+       return view('admin.productos.menu');
     }
 
     /**
@@ -43,7 +44,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        return view('admin.productos.create');
 
     }
 
@@ -83,7 +84,8 @@ class ProductosController extends Controller
     public function show($id)
     {
         $producto = Producto::find($id);
-        return view('productos.show', compact('producto'));
+
+        return view('admin.productos.show', compact('producto'));
     }
 
     /**
@@ -95,7 +97,7 @@ class ProductosController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-        return view('productos.edit', compact('producto'));
+        return view('admin.productos.edit', compact('producto'));
     }
 
     /**
@@ -149,4 +151,24 @@ class ProductosController extends Controller
         Producto::destroy($id);
         return redirect ('/admin/productos/index');
     }
+
+    public function attachCategorias($id)
+    {     
+        $producto = Producto::find($id);       
+
+        $categorias = Categoria::all();
+
+        return view('admin.productos.categorias', compact('producto'),compact('categorias'));  
+    }
+
+    
+    public function saveCategorias(Request $request, $id)
+    { 
+        $producto = Producto::find($id);
+        
+        $producto->categorias()->sync($request->categorias);
+
+        return redirect ('/admin/productos/index');
+    }
+
 }

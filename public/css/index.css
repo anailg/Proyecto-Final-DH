@@ -76,6 +76,65 @@ body {
         overflow: hidden;
         width:100vw;        
 }
+.container-gris{
+        position: relative;
+        overflow: hidden;
+        /*width:100vw;  */
+        background-color: rgb(240,239,239); /* light-light-grey;*/
+		display:flex; 
+		justify-content: center;
+		padding:2em;
+		margin:3em;
+}
+
+.container-flex {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.boton-paginate {
+	padding:1.5em;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+.direcciones {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.direccion {
+	float:left;
+	border-style:solid;
+	border-color: #47473D; /* grey*/
+	border-radius:10%;
+	width: 300px; /*30%;*/
+	height: 300px;
+	padding:2%;
+	position: relative;
+}
+
+.agregar-direccion{	
+	border-style:dashed;
+	float:left;	
+	border-color: #47473D; /* grey*/
+	border-radius:10%;
+	width: 300px; /*30%;*/
+	height:300px;
+	padding:2%;
+	position: relative;	
+}
+
+.agregar-direccion h2{
+	color:rgb(240,239,239);;
+}
+
+
+
+
+
 
 /* ------------------ Header Style ---------------------------------------------*/
 .main-header{

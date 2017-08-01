@@ -1,29 +1,29 @@
 @extends('layouts.master')
 
 @section('content')
-	<h1>Productos</h1>
-	<table class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Descripción</th>
-				<th>Precio</th>
-				<th>Detalle</th>				
-			</tr>
-		</thead>
 
-		<tbody>
-			@foreach($productos as $producto)
-				<tr>
-					<td>{{ $producto->nombre }}</td>
-					<td>{{ $producto->descripcion }}</td>
-					<td>{{ $producto->precio }}</td>
-					<td><a href={{"/productos/". $producto->id}}>Ver</a></td>
-				</tr>
+	<div class='container'>
+
+			<h1>Productos</h1>
+	
+			@foreach($productos as $producto)				
+				<div class="media">
+				  <div class="media-left">
+				    <img class="media-object" style="width:60px"
+				    	 src="{{asset('/storage/productos/'.$producto->imagen)}}" >
+				  </div>
+				  <div class="media-body">
+				    <h4 class="media-heading">{{ $producto->nombre }}</h4>
+				    <p>{{ $producto->descripcion }}</p>
+				    {{-- <a class="btn" role="button" href={{"/productos/". $producto->id}}>Ver</a> --}}
+				    <a href={{"/productos/". $producto->id}}>Ver</a>
+				  </div>
+				</div>
 			@endforeach
-		</tbody>
-	</table>
-	{{ $productos->links() }}
+		
+			{{ $productos->links() }}
+
+	</div>
 
 @endsection
 

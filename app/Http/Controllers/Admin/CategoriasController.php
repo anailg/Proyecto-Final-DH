@@ -1,14 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoriasController extends Controller
 {
+    protected $redirectTo = '/home'; // Lo usa 'auth' si no esta logueado
 
-    $this->middleware('admin');  // solo si es admin, sino redirige
+    public function __construct()
+    {
+        // $this->middleware('auth'); // solo accesible si estas loqueado
+        // $this->middleware('admin');  // solo si es admin, sino redirige
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,7 @@ class CategoriasController extends Controller
     {
         $categorias = Categoria::paginate(5);        
         
-        return view('categoria.index', compact('categorias'));
+        return view('admin.categorias.index', compact('categorias'));
     }
 
     /**
@@ -28,7 +34,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        return view('categorias.create');
+        return view('admin.categorias.create');
     }
 
     /**
@@ -45,15 +51,19 @@ class CategoriasController extends Controller
 
        //crear el categoria
         $categoria = Categoria::create(request()->all());
+        
+        if (isset(request()->imagen)){
+            //guardar la imagen
+            $nombre = str_slug($categoria->nombre) . '.' .request()->imagen->extension();
+            request()->imagen->storeAs('/public/categorias', $nombre);
 
-        //guardar la imagen
-        $nombre = str_slug($categoria->nombre) . '.' .request()->imagen->extension();
-        request()->imagen->storeAs('/public/categorias', $nombre);
+            //asociar la imagen con la categoria
+            $categoria->imagen = $nombre;
+            $categoria->save();
+        }
 
-        //asociar la imagen con la categoria
-        $categoria->imagen = $nombre;
-        $categoria->save();
-        return redirect ('/admin/categorias/'.$categoria->id);
+        // return redirect ('/admin/categorias/'.$categoria->id);
+        return redirect ('/admin/categorias/index');
     }
 
     /**
@@ -62,10 +72,10 @@ class CategoriasController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
         $categoria = Categoria::find($id);
-        return view('categorias.show', compact('categoria'));
+        return view('admin.categorias.show', compact('categoria'));
     }
 
     /**
@@ -74,10 +84,10 @@ class CategoriasController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
         $categoria = Categoria::find($id);
-        return view('categorias.edit', compact('categoria'));
+        return view('admin.categorias.edit', compact('categoria'));
     }
 
     /**
@@ -87,7 +97,7 @@ class CategoriasController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'nombre' => 'required|unique:categorias|max:20',
@@ -119,7 +129,7 @@ class CategoriasController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
         Categoria::destroy($id);
         return redirect ('/admin/categorias/index');

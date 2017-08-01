@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Producto;
 
-use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 
@@ -20,8 +20,10 @@ class ProductosController extends Controller
     
     public function lista()
     {
-        $productos = Producto::paginate(5);  
-              // agregar where activo
+        $productos = Producto::where('activo', 1)
+                ->orderBy('nombre')
+                ->paginate(2);  
+           
         
         return view('productos.lista', compact('productos'));
     }
