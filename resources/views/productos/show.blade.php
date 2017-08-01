@@ -24,7 +24,9 @@
 
 		</div>
 
-		{{-- <a href="back" class="btn btn-primary" role="button">Volver</a> --}}
+		<div>
+			<a href="{{ URL::previous() }}" class="btn btn-primary" role="button">Volver</a>
+		</div>
 		
 	</div>
 

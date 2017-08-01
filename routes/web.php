@@ -19,6 +19,11 @@ Route::get('faq', function () {
     return view('faq');
 });
 
+Route::get('envios', function () {
+    return view('envios');
+});
+
+
 Route::get('cantUsuarios', 'UsersController@cantUsuarios');
 
 

@@ -12,13 +12,13 @@
 					<ul class="footer-links">
 						<li><a href="faq">FAQ</a></li>
 						<li><a href="#">Mis pedidos</a></li>
-						<li><a href="#">Envios</a></li>
+						<li><a href="envios">Envios</a></li>
 					</ul>
 				</li>
 				<li><h3>Seguinos</h3>
 					<ul class="footer-links">
 						<li><a href="https://www.facebook.com/Cooking-Company-414253028611737/">Facebook</a></li>
-						<li><a href="#">Instagram</a></li>
+						<li><a href="https://www.instagram.com/cookingcompany2/">Instagram</a></li>
 						<li><a href="#">Twitter</a></li>
 					</ul>	
 				</li>			

@@ -31,9 +31,11 @@
 		<div>	
 			{{ $productos->links() }}		
 		</div>
+		
 		<div class="boton-paginate">
 			<a href="/admin/productos/create" class="btn btn-primary" role="button">Agregar</a>
 		</div>
+		
 	</div>
 	
 

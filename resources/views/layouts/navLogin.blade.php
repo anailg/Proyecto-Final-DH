@@ -19,18 +19,20 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     
-                                    <li>
-                                        <a href='' 
-                                            onclick="event.preventDefault();
-                                            document.getElementById('direcciones-form').submit();">
-                                            Direcciones
-                                        </a>
+                                    @if (!Auth::user()->isAdmin() )
+                                        <li>
+                                            <a href='' 
+                                                onclick="event.preventDefault();
+                                                document.getElementById('direcciones-form').submit();">
+                                                Direcciones
+                                            </a>
 
-                                        <form id="direcciones-form" action='/direcciones/' 
-                                              method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>                                        
-                                    </li>
+                                            <form id="direcciones-form" action='/direcciones/' 
+                                                  method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>                                        
+                                        </li>
+                                    @endif
                                     
                                     <li>
                                         <a href="{{ route('logout') }}"

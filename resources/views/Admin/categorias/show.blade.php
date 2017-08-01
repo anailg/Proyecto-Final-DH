@@ -12,14 +12,18 @@
 
 		<div class="col-sm-8">
 
-		<div class="list-group">
-			<h2>{{ $categoria->nombre }}</h2>	
-			@foreach ($categoria->productosAsoc() as $producto)
-				  <a href={{"/admin/productos/". $producto->id}} class="list-group-item">
-				  {{$producto->nombre}}</a>
-			@endforeach				  
+			<div class="list-group">
+				<h2>{{ $categoria->nombre }}</h2>	
+				@foreach ($categoria->productosAsoc() as $producto)
+					  <a href={{"/admin/productos/". $producto->id}} class="list-group-item">
+					  {{$producto->nombre}}</a>
+				@endforeach				  
+			</div>
+
 		</div>
 
+		<div>
+			<a href="{{ URL::previous() }}" class="btn btn-primary" role="button">Volver</a>
 		</div>		
 		
 	</div>
