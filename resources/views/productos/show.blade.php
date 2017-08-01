@@ -21,10 +21,11 @@
 				      <p>{{ $producto->especificaciones }}</p>
 				      <p>Precio = ${{ $producto->precio }}</p>				    
 			  </div>
+
 		</div>
 
+		{{-- <a href="back" class="btn btn-primary" role="button">Volver</a> --}}
 		
-
 	</div>
 
 @endsection

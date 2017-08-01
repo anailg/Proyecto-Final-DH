@@ -28,7 +28,7 @@
 			  </div>
 		</div>
 
-		{{-- <a href="#" class="btn btn-primary" role="button">Volver</a> --}}
+		{{-- <a href="back" class="btn btn-primary" role="button">Volver</a> --}}
 
 	</div>
 

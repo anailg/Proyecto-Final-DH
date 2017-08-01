@@ -24,14 +24,19 @@ Route::get('cantUsuarios', 'UsersController@cantUsuarios');
 
 Auth::routes();
 
-Route::post('direcciones/', 'DireccionesController@index');
-Route::post('direcciones/index', 'DireccionesController@index');
+Route::get('back',function (){ 
+		return back();
+});
+
+Route::post('/direcciones/', 'DireccionesController@index');
+Route::get('/direcciones/', 'DireccionesController@index');
+Route::get('/direcciones/index', 'DireccionesController@index');
 Route::get('direcciones/create/', 'DireccionesController@create');
 Route::post('direcciones/create/', 'DireccionesController@store');
 Route::get('direcciones/edit/{id}', 'DireccionesController@edit');
 Route::post('direcciones/edit/{id}', 'DireccionesController@update');
 Route::get('direcciones/destroy/{id}', 'DireccionesController@destroy');
-Route::post('/direcciones/setDefault/{id}', 'DireccionesController@setDefault');
+Route::get('/direcciones/setDefault/{id}', 'DireccionesController@setDefault');
 
 Route::post('pedidos/', 'PedidosController@index');
 

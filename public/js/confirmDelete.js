@@ -1,16 +1,17 @@
 ;(function (window, document, undefined) {
 
-  var eliminar = document.document.getElementById('#deleteProd')
+  var eliminar = document.getElementById('deleteProd')
 
   eliminar.addEventListener('click', function (evento) {
 
-    evento.preventDefault();
+    	evento.preventDefault();
 
-    if (confirm("¿Esta seguro que desea eliminar este producto?")) {
+	    if (confirm("¿Esta seguro que desea eliminar este producto?")) {
 
-        window.location.href = this.getAttribute('href');
-    }
+	        console.log(this.getAttribute('href'));
+	        window.location.replace(this.getAttribute('href'))
+	    }
   
-  }
+	});
  
 }(window, document));

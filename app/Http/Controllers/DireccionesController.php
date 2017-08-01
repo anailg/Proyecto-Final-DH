@@ -29,7 +29,8 @@ class DireccionesController extends Controller
     public function create()
     {
         $user_id = Auth::id();
-        return view('/direcciones.create',['user_id'=>$user_id,'default'=>0]);
+        // return view('/direcciones.create',['user_id'=>$user_id,'default'=>0]);
+        return view('/direcciones.create');
 
     }
 
@@ -51,13 +52,21 @@ class DireccionesController extends Controller
             ]);
 
     	
-    	$tieneDir = Direccion::where('user_id', $request->user_id)
+    	$tieneDir = Direccion::where('user_id', Auth::id())
     							->where('default', true)
-    							->count();     	
+    							->count();  
 
-    	$direccion = Direccion::create($request->all()); 
+        $direccion = new Direccion($request->all());
 
-    	($tieneDir == 0) ? $direccion->default=true : $direccion->default=false ; 	   	 
+
+        $direccion->user_id = Auth::id();       
+    	
+        // $direccion = Direccion::create($request->all()); 
+
+    	($tieneDir == 0) ? $direccion->default=true : $direccion->default=false ;
+
+
+        dd($direccion); 	   	 
     	   	
     	$direccion->save();
 
@@ -126,9 +135,11 @@ class DireccionesController extends Controller
 
         $direccion->default=true;          
 
-        $direccionDefaultActual = getDireccionDefault($direccion->user_id);
+        $direccionDefaultActual = $this->getDireccionDefault($direccion->user_id);
 
         $direccionDefaultActual->default = false;
+
+        // dd($direccionDefaultActual);
 
         $direccionDefaultActual->save();
 
@@ -142,7 +153,10 @@ class DireccionesController extends Controller
     	$direccion = Direccion::where('user_id', $user_id)
     							->where('default', true)
     							->get(); 
-    	return $direccion;
+
+    	$direccion = Direccion::find($direccion[0]['id']);
+
+        return $direccion;
     }
 
 

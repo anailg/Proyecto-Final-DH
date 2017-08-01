@@ -14,10 +14,7 @@
                 <form action="" method="post" enctype="multipart/form-data">
 
                     {{ csrf_field() }}
-
-                    <input type="hidden" name="user_id" value="{{$user_id}}">
-                    <input type="hidden" name="default" value="{{$default}}">
-
+                    
                     <div class="form-group">
                         <label for="nombrecompleto">Nombre completo</label>
                         <input type="text" name="nombrecompleto" id="nombrecompleto" 
