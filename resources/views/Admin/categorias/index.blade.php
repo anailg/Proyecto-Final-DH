@@ -18,7 +18,8 @@
 					<td>{{ $categoria->nombre }}</td>
 					<td><a href={{"/admin/categorias/". $categoria->id}}>Ver</a></td>
 					<td><a href={{"/admin/categorias/edit/".$categoria->id}}>Editar</a></td>
-					<td><a href={{"/admin/categorias/destroy/".$categoria->id}} id='deleteCateg'>Eliminar</a></td>
+					<td><a href={{"/admin/categorias/destroy/".$categoria->id}} 
+					       id='deleteCateg'>Eliminar</a></td>
 				</tr>
 			@endforeach
 		</tbody>
@@ -36,5 +37,5 @@
 @endsection
 
 @section('scripts')
-	<script src="/js/confirmDelete.js"></script>
+	<script src="/js/confirmDeleteCategoria.js"></script>
 @endsection

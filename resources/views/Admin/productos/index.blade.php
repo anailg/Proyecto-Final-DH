@@ -42,5 +42,5 @@
 @endsection
 
 @section('scripts')
-	<script src="/js/confirmDelete.js"></script>
+	<script src="/js/confirmDeleteProducto.js"></script>
 @endsection

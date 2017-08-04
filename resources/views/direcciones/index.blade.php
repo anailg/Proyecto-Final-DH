@@ -22,7 +22,7 @@
 					@if ($direccion->default)  <h4>Dirección Default</h4>  @endif
 					
 					<a href={{"/direcciones/edit/".$direccion->id}}>Editar</a> {{ ' | ' }}
-					<a href={{"/direcciones/destroy/".$direccion->id}}>Eliminar</a> 
+					<a href={{"/direcciones/destroy/".$direccion->id}} id='DeleteDir'>Eliminar</a> 
 					@if (!$direccion->default)  
 					     {{ ' | ' }}
 					     <a href={{"/direcciones/setDefault/".$direccion->id}}>
@@ -39,4 +39,8 @@
 
 	</div>
 
+@endsection
+
+@section('scripts')
+	<script src="/js/confirmDeleteDireccion.js"></script>
 @endsection

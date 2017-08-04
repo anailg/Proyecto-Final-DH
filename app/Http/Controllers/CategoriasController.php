@@ -14,13 +14,14 @@ class CategoriasController extends Controller
      */
     public function lista()
     {
-        $categorias = categoria::paginate(5); 
+        // $categorias = Categoria::paginate(40);
+        $categorias = Categoria::orderby('id') -> get();
         
         return view('categorias.lista', compact('categorias'));
     }
 
     
-    public function show(Categoria $categoria)
+    public function show($id)
     {
        $categoria = categoria::find($id);
         return view('categorias.show', compact('categoria')); 

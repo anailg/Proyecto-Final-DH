@@ -148,7 +148,13 @@ class ProductosController extends Controller
     
     public function destroy($id)
     {
-        Producto::destroy($id);
+        DB::transaction(function () use ($id) {
+            DB::table('prod_categ')->where('producto_id', $id)->delete();
+            DB::table('productos')->where('id', $id)->delete();
+        });    
+
+        // Producto::destroy($id);
+
         return redirect ('/admin/productos/index');
     }
 

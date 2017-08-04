@@ -26,7 +26,6 @@ Route::get('envios', function () {
 
 Route::get('cantUsuarios', 'UsersController@cantUsuarios');
 
-
 Auth::routes();
 
 Route::get('back',function (){ 
@@ -44,6 +43,9 @@ Route::get('direcciones/destroy/{id}', 'DireccionesController@destroy');
 Route::get('/direcciones/setDefault/{id}', 'DireccionesController@setDefault');
 
 Route::post('pedidos/', 'PedidosController@index');
+										
+Route::get('buscar/', 'BuscarController@pedirCriterio');
+Route::post('buscar/', 'BuscarController@buscar');
 
 Route::get('productos/', 'ProductosController@lista');
 Route::get('productos/{id}', 'ProductosController@show');
@@ -61,8 +63,8 @@ Route::get('/admin/productos/destroy/{id}', 'Admin\ProductosController@destroy')
 Route::get('/admin/productos/{id}', 'Admin\ProductosController@show');
 
 
-Route::get('/categorias/', 'categoriasController@lista');
-Route::get('/categorias/{id}', 'categoriasController@show');
+Route::get('/categorias/', 'CategoriasController@lista');
+Route::get('/categorias/{id}', 'CategoriasController@show');
 
 
 Route::get('admin/categorias/index', 'Admin\CategoriasController@index');

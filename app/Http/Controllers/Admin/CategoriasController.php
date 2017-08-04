@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CategoriasController extends Controller
 {
@@ -131,7 +132,13 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        Categoria::destroy($id);
+        DB::transaction(function () use ($id) {
+            DB::table('prod_categ')->where('categoria_id', $id)->delete();
+            DB::table('categorias')->where('id', $id)->delete();
+        });    
+
+        // Categoria::destroy($id);
+
         return redirect ('/admin/categorias/index');
     }
 }

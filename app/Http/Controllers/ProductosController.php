@@ -22,10 +22,12 @@ class ProductosController extends Controller
     {
         $productos = Producto::where('activo', 1)
                 ->orderBy('nombre')
-                ->paginate(2);  
-           
+                ->get();
+                // ->paginate(12);             
         
-        return view('productos.lista', compact('productos'));
+        // return view('productos.lista', compact('productos'));
+        return view('productos.productos', compact('productos'));
+        
     }
 
     

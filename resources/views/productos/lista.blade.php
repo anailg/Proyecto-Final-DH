@@ -9,8 +9,13 @@
 			@foreach($productos as $producto)				
 				<div class="media">
 				  <div class="media-left">
-				    <img class="media-object" style="width:60px"
-				    	 src="{{asset('/storage/productos/'.$producto->imagen)}}" >
+				    @if (file_exists(public_path('/storage/productos/'.$producto->imagen)))
+		    		<img class="media-object" style="width:120px"	    	
+			    	 	src="{{asset('/storage/productos/'.$producto->imagen)}}">
+			    	@else
+			    		<img class="media-object" style="width:120px"	 
+			    		src="{{asset('/images/no_disponible.png')}}" >
+			    	@endif
 				  </div>
 				  <div class="media-body">
 				    <h4 class="media-heading">{{ $producto->nombre }}</h4>
