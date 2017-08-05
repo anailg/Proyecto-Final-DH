@@ -9,9 +9,7 @@
 
                 <h1>Buscar Productos</h1>                
 
-                <form action="" method="post" enctype="multipart/form-data">
-
-                    {{ csrf_field() }}
+                <form action="busqueda" method="get" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="categoria">Categoria </label>   
@@ -30,7 +28,7 @@
                     </div>                    
 
                     <div class="form-group">
-                        <input class="btn btn-primary" type="submit" name="enviador" value="Buscar">
+                        <input class="btn btn-primary" type="submit" value="Buscar">
                     </div>
                     
                 </form>

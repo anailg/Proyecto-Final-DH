@@ -45,7 +45,7 @@ Route::get('/direcciones/setDefault/{id}', 'DireccionesController@setDefault');
 Route::post('pedidos/', 'PedidosController@index');
 										
 Route::get('buscar/', 'BuscarController@pedirCriterio');
-Route::post('buscar/', 'BuscarController@buscar');
+Route::get('busqueda', 'BuscarController@buscar');
 
 Route::get('productos/', 'ProductosController@lista');
 Route::get('productos/{id}', 'ProductosController@show');
@@ -57,7 +57,7 @@ Route::get('/admin/productos/create', 'Admin\ProductosController@create');
 Route::post('/admin/productos/create', 'Admin\ProductosController@store');
 Route::get('/admin/productos/edit/{id}', 'Admin\ProductosController@edit');
 Route::post('/admin/productos/edit/{id}', 'Admin\ProductosController@update');
-Route::get('/admin/productos/categorias/{id}', 'Admin\ProductosController@attachCategorias');
+Route::get('/admin/productos/categorias/{id}','Admin\ProductosController@attachCategorias');
 Route::post('/admin/productos/categorias/{id}', 'Admin\ProductosController@saveCategorias');
 Route::get('/admin/productos/destroy/{id}', 'Admin\ProductosController@destroy');
 Route::get('/admin/productos/{id}', 'Admin\ProductosController@show');
