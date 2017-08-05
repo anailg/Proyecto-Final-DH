@@ -49,17 +49,14 @@
 
 		</div>
 
-
-		
-
 	@endsection	
 
 </div>	
 
 @section('scripts')
-	{{-- {{ asset ('js/actualizarCantClientes.js') }}  --}}
-	{{-- {{ asset ('js/carrusel.js') }}  --}}
-	{{-- <script src="js/actualizarCantUsuarios.js"></script> --}}
+	{{-- {{ asset ('/js/actualizarCantClientes.js') }}  --}}
+	{{-- {{ asset ('/js/carrusel.js') }}  --}}
+	{{-- <script src="/js/actualizarCantUsuarios.js"></script> --}}
 	<script src="/js/carrusel.js"></script>
 @endsection
 

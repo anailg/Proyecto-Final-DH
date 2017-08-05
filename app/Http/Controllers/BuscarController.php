@@ -18,47 +18,33 @@ class BuscarController extends Controller
     }
 
     public function buscar(Request $request) {
-    	
-    	$criterio='%'.$request->criterio.'%';
+        //Por la única razón que uso el select es porque categorias y productos comparten la columna "nombre"
+        //con el select, fuerzo a que (a pesar del join) la consulta sólo traiga resultados de la tabla productos
+        //además, esto hace que la paginación sea sobre el total de prouducto y no de categorías.
+        $query = Producto::select(\DB::raw('productos.*'));
 
-    	if ($request->categoria==null) {
+        //si el request filtra por categoría hago el inner join (porque la relación es de muchos a muchos)
+        if ($request->categoria) {
+            $query->join('prod_categ', 'productos.id', '=', 'prod_categ.producto_id')
+                ->join('categorias', 'categorias.id', '=', 'prod_categ.categoria_id')
+                ->where('categorias.id', $request->categoria)
+            ;
+        }
 
-    		if ($request->criterio==null) { 
+        //si hay un criterio, lo agrego con el where
+        if ($request->criterio) {
+            $criterio = '%'.$request->criterio.'%';
+            $query->where(function ($query) use ($criterio) {
+                $query->where('productos.nombre', 'like', $criterio) 
+                    ->orwhere ('descripcion', 'like', $criterio);
+                }
+            );
+        }
 
-    			$productos = Producto::orderBy('nombre')->paginate(10);
+        //ejecuto la query
+        $productos = $query->orderBy('nombre')->paginate(2);
 
-    		} else {
-    			
-	    		$productos = Producto::where ('nombre','like',$criterio) 
-	    							 ->orwhere ('descripcion','like',$criterio) 
-	    							 ->paginate(10);
-	    	}
-	    } else {	
-
-	    	if ($request->criterio==null) { 
-
-	    		$productos = Producto::join('prod_categ','id','=','producto_id')
-	    					->where('categoria_id',$request->categoria)
-	    					->paginate(10);	    
-  
-	    	} else {
-
-	    		$productos = Producto::join('prod_categ','id','=','producto_id')
-	    					->where('categoria_id',$request->categoria)	    
-	    					->where(function ($query) use ($criterio) {	 
-					                $query->where('nombre','like',$criterio) 
-	    								  ->orwhere ('descripcion','like',$criterio);
-	            					}) 	            			 		
-	    					->paginate(1000);
-	    	}
-
-	    	// ->toSql();
-	    	// dd($productos);
-	    }
-
-
-    	return view('productos.lista', compact('productos'));
-
+        return view('productos.lista', compact('productos'));
     }
 }
 
