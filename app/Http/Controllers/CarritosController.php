@@ -93,7 +93,7 @@ class CarritosController extends Controller
 
         // dd($totalCarrito);
 
-        return view( '/carrito',['items'=>$carritoItems]);
+        return view( '/carrito',['items'=>$carritoItems, 'totalCarrito'=>$totalCarrito]);
         
     }
 

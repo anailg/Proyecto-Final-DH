@@ -20,8 +20,8 @@
 			<div class="row">	
 				<div class="col-sm-6">{{$item->nombre}}</div>
 				<div class="col-sm-2 derecha">{{$item->cantidad}}</div>
-				<div class="col-sm-2 derecha">{{$item->precio}}</div>
-				<div class="col-sm-2 derecha">{{$item->cantidad*$item->precio}}</div>
+				<div class="col-sm-2 derecha">${{$item->precio}}</div>
+				<div class="col-sm-2 derecha">${{$item->cantidad*$item->precio}}</div>
 			</div>
 
 			<br>
@@ -31,8 +31,8 @@
 		<br>
 		
 		<div class="row">
-			{{-- <div class="col-sm-10"><strong>Total</strong></div>
-			<div class="col-sm-2"></div> --}}
+			<div class="col-sm-10"><strong>Total</strong></div>
+			<div class="col-sm-2 derecha"><strong>${{$totalCarrito->total}}</strong></div>
 		</div>
 	
 
