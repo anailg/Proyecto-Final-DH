@@ -66,7 +66,7 @@ class DireccionesController extends Controller
     	($tieneDir == 0) ? $direccion->default=true : $direccion->default=false ;
 
 
-        dd($direccion); 	   	 
+        // dd($direccion); 	   	 
     	   	
     	$direccion->save();
 

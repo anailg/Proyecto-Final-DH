@@ -121,7 +121,7 @@ class CategoriasController extends Controller
         }
     
         $categoria->save();
-        // return redirect ('categorias/'.$categoria->id);
+      
         return redirect ('/admin/categorias/index');
     }
 
