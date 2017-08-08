@@ -100,9 +100,10 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nombre' => 'required|unique:categorias|max:20',
-            ]);
+        
+        // $this->validate($request, [
+        //     'nombre' => 'required|unique:categorias|max:20',
+        //     ]);
 
         $categoria = categoria::find($id); 
 

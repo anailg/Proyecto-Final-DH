@@ -37,6 +37,10 @@ body {
 		margin:3em;
 }
 
+.fondo-gris{
+	background-color: rgb(240,239,239); /* light-light-grey;*/
+}
+
 .container-flex {
 	width: 98%;
 	display:flex;
@@ -49,7 +53,8 @@ body {
 .elemento-flex {
 	float: left;
 	position:relative;
-	padding: 2em;
+	padding: 1em;
+	margin:1em;
 }
 
 .boton-paginate {
@@ -72,6 +77,17 @@ body {
 	padding: 2em;
 }
 
+.container-ventana{
+		
+		border-style:solid;
+		border-color: #47473D; /* grey*/
+		width: 60%;
+		padding:2%;
+		position: relative;
+}
+.derecha {
+	text-align: right;
+}
 /*-------------------------------------------------------------------------------*/
 
 .direcciones {

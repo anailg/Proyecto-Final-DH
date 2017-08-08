@@ -1,6 +1,7 @@
 ;(function (window, document, undefined) {
 
   	document.querySelectorAll('.imgElemento').forEach(
+  		
   		function(foto){
 
   			foto.addEventListener('click', function (evento) {

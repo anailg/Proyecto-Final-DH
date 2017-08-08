@@ -23,7 +23,6 @@ Route::get('envios', function () {
     return view('envios');
 });
 
-
 Route::get('cantUsuarios', 'UsersController@cantUsuarios');
 
 Auth::routes();
@@ -49,6 +48,9 @@ Route::get('busqueda', 'BuscarController@buscar');
 
 Route::get('productos/', 'ProductosController@lista');
 Route::get('productos/{id}', 'ProductosController@show');
+
+Route::get('carrito/add/{id}', 'CarritosController@agregar_producto');
+Route::get('carrito/', 'CarritosController@show');
 
 
 Route::get('/admin/productos/index', 'Admin\ProductosController@index');

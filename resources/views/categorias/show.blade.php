@@ -5,7 +5,9 @@
 		<h1>{{ $categoria->nombre }}</h1>
 		{{-- <img class="img-responsive" src="{{asset('/storage/categorias/'.$categoria->imagen)}}"> --}}
 
-	<div class='container-flex'>
+	<div class='container-flex-column'>
+
+		<div class='container-flex '>
 
 			@foreach ($categoria->productosAsoc() as $producto)
 
@@ -24,7 +26,11 @@
 
 			@endforeach	
 
+		</div>
+
 	</div>
+
+	{{-- <a href="{{ URL::previous() }}" class="btn btn-primary" role="button">Volver</a> --}}
 
 @endsection
 

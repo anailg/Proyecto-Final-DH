@@ -5,11 +5,12 @@
 	<div class="container">
         
         <div class="row">
+        
             <div class="col-md-8 col-md-offset-2">
 
                 <h1>Buscar Productos</h1>                
 
-                <form action="busqueda" method="get" enctype="multipart/form-data">
+                <form class="form-horizontal" action="busqueda" method="get" >
 
                     <div class="form-group">
                         <label for="categoria">Categoria </label>   

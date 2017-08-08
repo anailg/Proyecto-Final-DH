@@ -2,21 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Carrito;
+use App\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CarritosController extends Controller
 {
-    protected $redirectTo = '/back';
+    // protected $redirectTo = '/home';
     
     public function __construct()
     {
         $this->middleware('auth');        
     }
 
-    public function agregar_producto($producto){
+    public function agregar_producto($producto_id){
 
         
+        $item=Carrito::where('user_id',Auth::id())
+                       ->where('producto_id',$producto_id)
+                        ->first();
+
+        if ($item) {
+
+            $item->cantidad=$item->cantidad+1;
+            
+        } else {
+
+            $item = new Carrito();
+            $item->user_id=Auth::id();
+            $item->producto_id=$producto_id;
+            $item->cantidad=1;
+        }
+        
+
+        // dd($item);
+
+        $item->save();
+
+        return back()->with('status', 'Producto agregado al carrito.');
+
     }
 
 
@@ -37,7 +64,7 @@ class CarritosController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -46,9 +73,9 @@ class CarritosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($item)
     {
-        //
+        Carrito::create($item);
     }
 
     /**
@@ -57,9 +84,17 @@ class CarritosController extends Controller
      * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrito $carrito)
+    public function show()
     {
-        //
+
+        $carritoItems=Auth::user()->itemsCarrito();
+
+        $totalCarrito=Auth::user()->totalCarrito();
+
+        // dd($totalCarrito);
+
+        return view( '/carrito',['items'=>$carritoItems]);
+        
     }
 
     /**
@@ -95,6 +130,9 @@ class CarritosController extends Controller
     {
         //
     }
+
+    
+   
 
 
 }
